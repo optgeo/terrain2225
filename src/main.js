@@ -1,5 +1,6 @@
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { LegendControl } from './legendControl.js';
 
 // Initialize the map
 const map = new maplibregl.Map({
@@ -194,3 +195,6 @@ map.on('click', (e) => {
 });
 
 console.log('terrain2225 initialized');
+
+// Initialize legend control
+const legendControl = new LegendControl();

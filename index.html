@@ -14,10 +14,152 @@
         width: 100vw;
         height: 100vh;
       }
+      
+      /* Legend Panel Styles */
+      #legend-panel {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        font-family: Arial, sans-serif;
+        z-index: 1000;
+        max-width: 280px;
+        transition: all 0.3s ease;
+      }
+      
+      #legend-header {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+      }
+      
+      #legend-title {
+        font-weight: bold;
+        font-size: 14px;
+        color: #333;
+      }
+      
+      #legend-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      #language-toggle {
+        background: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 4px 8px;
+        font-size: 12px;
+        cursor: pointer;
+        color: #333;
+      }
+      
+      #language-toggle:hover {
+        background: #e0e0e0;
+      }
+      
+      #collapse-toggle {
+        background: none;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        color: #666;
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      #collapse-toggle:hover {
+        color: #333;
+      }
+      
+      #legend-content {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 8px 0;
+        transition: all 0.3s ease;
+      }
+      
+      #legend-panel.collapsed #legend-content {
+        max-height: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      
+      .legend-item {
+        display: flex;
+        align-items: center;
+        padding: 4px 16px;
+        font-size: 12px;
+      }
+      
+      .legend-color {
+        width: 16px;
+        height: 16px;
+        border-radius: 3px;
+        margin-right: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        flex-shrink: 0;
+      }
+      
+      .legend-text {
+        color: #333;
+        line-height: 1.3;
+      }
+      
+      /* Mobile responsive */
+      @media (max-width: 480px) {
+        #legend-panel {
+          right: 10px;
+          bottom: 10px;
+          max-width: 240px;
+        }
+        
+        #legend-title {
+          font-size: 13px;
+        }
+        
+        .legend-item {
+          font-size: 11px;
+          padding: 3px 12px;
+        }
+        
+        .legend-color {
+          width: 14px;
+          height: 14px;
+        }
+      }
     </style>
   </head>
   <body>
     <div id="map"></div>
+    
+    <!-- Legend Panel -->
+    <div id="legend-panel">
+      <div id="legend-header">
+        <div id="legend-title">Terrain Classification Legend</div>
+        <div id="legend-controls">
+          <button id="language-toggle">日本語</button>
+          <button id="collapse-toggle">−</button>
+        </div>
+      </div>
+      <div id="legend-content">
+        <div id="legend-items">
+          <!-- Legend items will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+    
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
