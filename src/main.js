@@ -92,15 +92,16 @@ map.on('load', async () => {
       exaggeration: 1
     });
     
-    // Add hillshading layer
+    // Add hillshading layer (add before terrain22 so terrain22 can be partially transparent)
     map.addLayer({
       id: 'hillshading',
       type: 'hillshade',
       source: 'matterhorn',
       layout: {},
       paint: {
-        'hillshade-accent-color': '#5a5a5a',
-        'hillshade-shadow-color': '#000000',
+        // Use semi-transparent colors so hillshade shows through terrain22 fill
+        'hillshade-accent-color': 'rgba(90,90,90,0.6)',
+        'hillshade-shadow-color': 'rgba(0,0,0,0.6)',
         'hillshade-illumination-direction': 315,
         'hillshade-exaggeration': 0.5
       }
@@ -118,7 +119,8 @@ map.on('load', async () => {
       maxzoom: terrain22Data.maxzoom || 22
     });
     
-    // Add terrain22 layer with official specification
+    // terrain22 の公式スタイルに準拠したレイヤー定義
+    // hillshade が下にある前提で、fill-opacity を下げて陰影を透過表示する
     map.addLayer({
       id: 'terrain22',
       type: 'fill',
@@ -151,7 +153,9 @@ map.on('load', async () => {
           21, 'rgb(253, 253, 120)',
           22, 'rgb(0, 183, 255)',
           'rgb(100, 100, 100)'
-        ]
+        ],
+        // デフォルト推奨: 部分透過にして下層の hillshade を透かす
+        'fill-opacity': 0.75
       },
       maxzoom: 22
     });
