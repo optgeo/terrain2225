@@ -222,7 +222,7 @@ When using terrain classification data from this application, please cite the fo
 
 ```
 Iwahashi, J., Yamazaki, D. (2022) Global polygons for terrain classification 
-divided into uniform slopes and basins. Prog Earth Planet Sci 9, 33. 
+divided into uniform slopes and basins. Prog. Earth Planet. Sci. 9, 33. 
 https://doi.org/10.1186/s40645-022-00487-2
 ```
 
