@@ -56,7 +56,7 @@ async function loadTileJSON(url, retries = 3, delay = 1000) {
 // Add terrain and hillshading sources and layers when map is loaded
 map.on('load', async () => {
   let terrain22Data = null;
-  let matternData = null;
+  let mapterhornData = null;
   
   try {
     // Try to fetch TileJSON for terrain22 (terrain data)
@@ -70,19 +70,19 @@ map.on('load', async () => {
   try {
     // Try to fetch TileJSON for mapterhorn (hillshading/elevation)  
     console.log('Loading mapterhorn TileJSON...');
-    matternData = await loadTileJSON('https://tunnel.optgeo.org/martin/mapterhorn');
+    mapterhornData = await loadTileJSON('https://tunnel.optgeo.org/martin/mapterhorn');
     console.log('mapterhorn TileJSON loaded successfully');
   } catch (error) {
     console.warn('Failed to load mapterhorn TileJSON:', error.message);
   }
   
   // Add matterhorn source for terrain elevation if available
-  if (matternData && matternData.tiles) {
+  if (mapterhornData && mapterhornData.tiles) {
     map.addSource('matterhorn', {
       type: 'raster-dem',
-      tiles: matternData.tiles,
-      minzoom: matternData.minzoom || 0,
-      maxzoom: matternData.maxzoom || 22,
+      tiles: mapterhornData.tiles,
+      minzoom: mapterhornData.minzoom || 0,
+      maxzoom: mapterhornData.maxzoom || 22,
       tileSize: 256,
       encoding: 'terrarium'
     });
@@ -162,7 +162,7 @@ map.on('load', async () => {
   }
   
   // If neither primary source is available, add fallback terrain
-  if (!matternData && !terrain22Data) {
+  if (!mapterhornData && !terrain22Data) {
     console.log('Primary data sources unavailable, adding styled background...');
     
     // Add a terrain-style background instead of external sources
