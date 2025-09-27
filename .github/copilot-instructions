@@ -1,0 +1,113 @@
+# terrain2225 - GitHub Copilot Instructions
+
+## Project Overview
+
+terrain2225 is a modern web mapping application that implements terrain22 using MapLibre GL JS. It's a 2025 iteration focused on 3D terrain visualization with clean, performant code deployed via GitHub Pages.
+
+## Technical Stack & Architecture
+
+- **Framework**: Vanilla JavaScript (ES6+) with MapLibre GL JS
+- **Build System**: Vite for fast development and optimized production builds
+- **Deployment**: GitHub Pages with automated CI/CD via GitHub Actions
+- **Data Sources**: External TileJSON endpoints (terrain22 and mapterhorn tiles)
+- **License**: CC0 1.0 Universal (Public Domain)
+
+## Development Guidelines
+
+### Code Style & Structure
+- Use modern ES6+ JavaScript with modules
+- Prefer async/await over Promise chains for better readability
+- Keep functions focused and single-purpose
+- Use meaningful variable and function names
+- Add comments for complex MapLibre GL JS configurations
+
+### MapLibre GL JS Best Practices
+- Always handle TileJSON loading failures gracefully with try/catch
+- Use proper error handling for external data sources
+- Implement progressive enhancement (fallback when data sources are unavailable)
+- Configure terrain sources with appropriate encoding (e.g., 'terrarium' for elevation data)
+- Set reasonable zoom, pitch, and bearing defaults for Tokyo coordinates (139.7°E, 35.68°N)
+
+### Performance Considerations
+- Lazy load external data sources
+- Use appropriate tile zoom levels (minzoom/maxzoom)
+- Implement retry logic for network requests
+- Keep bundle size reasonable (current target: under 1MB gzipped)
+- Use Vite's built-in optimizations
+
+### Terrain Visualization Rules
+- **No Transparency**: Terrain polygons must always render with full opacity (fill-opacity: 1.0)
+- Use color interpolation based on elevation data when available
+- Default hillshading settings: illumination-direction: 315, exaggeration: 0.5
+- Set terrain exaggeration to 1.0 for realistic 3D visualization
+
+### Error Handling & Resilience
+- Always provide fallbacks when external data sources fail
+- Log warnings for failed data loads but don't break the application
+- Implement graceful degradation for missing map controls (e.g., GlobeControl)
+- Use console.log for success messages, console.warn for recoverable errors
+
+### Build & Deployment
+- Base path must be `/terrain2225/` for GitHub Pages deployment
+- Output directory is `dist/`
+- Ensure builds are reproducible and don't include development artifacts
+- Test both development and production builds before committing
+
+### Dependencies Management
+- Keep dependencies minimal and focused
+- Use exact versions in package.json when possible
+- Regularly update MapLibre GL JS but test thoroughly before deploying
+- Avoid adding unnecessary build tools or dependencies
+
+## File Organization
+
+```
+src/main.js        - Main application entry point with map initialization
+index.html         - Minimal HTML shell with map container
+vite.config.js     - Build configuration with GitHub Pages base path
+package.json       - Dependencies and build scripts
+.github/workflows/ - CI/CD configuration for automated deployment
+```
+
+## Data Integration Guidelines
+
+- Use TileJSON format for all data sources
+- Implement proper source-layer mapping for vector tiles
+- Handle both raster-dem (matterhorn) and vector (terrain22) sources
+- Always check for data availability before adding layers
+- Use appropriate tile size (256px) and encoding settings
+
+## UI/UX Principles
+
+- Maintain clean, minimal interface with focus on the map
+- Include standard navigation controls (zoom, pan, rotation)
+- Add GlobeControl when available for projection switching
+- Use consistent styling that complements terrain visualization
+- Ensure responsive design works on various screen sizes
+
+## Testing & Quality Assurance
+
+- Test builds locally before pushing changes
+- Verify both development and production modes work correctly
+- Check that external data sources load properly
+- Validate 3D terrain rendering and hillshading effects
+- Ensure GitHub Pages deployment works end-to-end
+
+## Security & Privacy
+
+- No user data collection or tracking
+- All external requests are to trusted tile servers
+- Public domain license allows unrestricted use and modification
+- No authentication or user sessions required
+
+## Contributing Guidelines
+
+When suggesting code changes:
+1. Follow the established code style and patterns
+2. Test changes with both available and unavailable data sources
+3. Ensure compatibility with the Vite build system
+4. Maintain the clean, minimal approach of the existing codebase
+5. Add appropriate error handling for new features
+6. Consider performance impact of any additions
+
+This is a focused, single-purpose mapping application. Keep suggestions aligned with terrain visualization and avoid adding unnecessary complexity or features that don't directly support the core mapping functionality.
