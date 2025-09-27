@@ -154,7 +154,7 @@ map.on('load', async () => {
           22, 'rgb(0, 183, 255)',
           'rgb(100, 100, 100)'
         ],
-        // デフォルト推奨: 部分透過にして下層の hillshade を透かす
+        // Default recommendation: use partial transparency to show the underlying hillshade
         'fill-opacity': 0.75
       },
       maxzoom: 22
