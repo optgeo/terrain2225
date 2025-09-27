@@ -4,6 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 // Initialize the map
 const map = new maplibregl.Map({
   container: 'map',
+  hash: true,
   style: {
     version: 8,
     sources: {},
