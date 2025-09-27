@@ -118,33 +118,42 @@ map.on('load', async () => {
       maxzoom: terrain22Data.maxzoom || 22
     });
     
-    // Add terrain polygon layers with no transparency (always most dense)
-    // This will depend on the actual layer structure in terrain22 TileJSON
+    // Add terrain22 layer with official specification
     map.addLayer({
-      id: 'terrain-polygons',
+      id: 'terrain22',
       type: 'fill',
       source: 'terrain22',
-      'source-layer': 'terrain', // This may need to be adjusted based on actual data structure
-      layout: {},
+      'source-layer': 'terrain22',
       paint: {
         'fill-color': [
-          'case',
-          ['has', 'elevation'],
-          [
-            'interpolate',
-            ['linear'],
-            ['get', 'elevation'],
-            0, '#2E8B57',
-            500, '#228B22',
-            1000, '#8FBC8F',
-            1500, '#DEB887',
-            2000, '#D2691E',
-            3000, '#A0522D'
-          ],
-          '#696969'
-        ],
-        'fill-opacity': 1.0 // Always fully opaque - no transparency
-      }
+          'match',
+          ['get', 'terrain22'],
+          1, 'rgb(112, 79, 41)',
+          2, 'rgb(172, 82, 50)',
+          3, 'rgb(153, 131, 83)',
+          4, 'rgb(251, 154, 153)',
+          5, 'rgb(248, 3, 204)',
+          6, 'rgb(243, 162, 243)',
+          7, 'rgb(145, 150, 185)',
+          8, 'rgb(40, 135, 108)',
+          9, 'rgb(20, 172, 132)',
+          10, 'rgb(31, 195, 105)',
+          11, 'rgb(223, 134, 31)',
+          12, 'rgb(30, 218, 74)',
+          13, 'rgb(125, 162, 143)',
+          14, 'rgb(155, 151, 169)',
+          15, 'rgb(251, 147, 0)',
+          16, 'rgb(122, 236, 50)',
+          17, 'rgb(249, 180, 4)',
+          18, 'rgb(194, 251, 71)',
+          19, 'rgb(251, 216, 15)',
+          20, 'rgb(154, 255, 255)',
+          21, 'rgb(253, 253, 120)',
+          22, 'rgb(0, 183, 255)',
+          'rgb(100, 100, 100)'
+        ]
+      },
+      maxzoom: 22
     });
     
     console.log('terrain22 polygon layers added');
