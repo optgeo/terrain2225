@@ -62,7 +62,7 @@ map.on('load', async () => {
   try {
     // Try to fetch TileJSON for terrain22 (terrain data)
     console.log('Loading terrain22 TileJSON...');
-    terrain22Data = await loadTileJSON('https://tunnel.optgeo.org/martin/terrain22');
+    terrain22Data = await loadTileJSON('https://tunnel.optgeo.org/martin/terrain2225');
     console.log('terrain22 TileJSON loaded successfully');
   } catch (error) {
     console.warn('Failed to load terrain22 TileJSON:', error.message);
